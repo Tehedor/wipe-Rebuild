@@ -1,10 +1,11 @@
 #!/bin/bash
+# echo "Ejecutar script" | nc <IP_DEL_SERVIDOR> 12345
 
 # Puerto en el que el servidor escuchará las señales
 PORT=12345
 
 # Ruta al script que se ejecutará
-SCRIPT_PATH=~/export_volume.sh
+SCRIPT_PATH=./export_volume.sh
 
 # Función para manejar la señal y ejecutar el script
 handle_signal() {
