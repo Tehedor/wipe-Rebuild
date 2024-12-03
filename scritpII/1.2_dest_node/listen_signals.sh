@@ -15,5 +15,8 @@ handle_signal() {
 # Escuchar en el puerto especificado y manejar la señal
 while true; do
   echo "Esperando señales en el puerto $PORT..."
-  nc -l -p $PORT -c 'handle_signal'
+  # Escuchar en el puerto y leer la entrada
+  nc -l -p $PORT | while read line; do
+    handle_signal
+  done
 done
