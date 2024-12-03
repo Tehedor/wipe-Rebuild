@@ -22,3 +22,9 @@ spec:
     persistentVolumeClaimName: $VOLUME_NAME
 EOF
 
+# Aplicar el archivo YAML para crear el snapshot
+echo "Creando snapshot del volumen persistente '$VOLUME_NAME'..."
+kubectl apply -f $SNAPSHOT_FILE
+
+echo "Snapshot creado y guardado en: $SNAPSHOT_FILE"
+

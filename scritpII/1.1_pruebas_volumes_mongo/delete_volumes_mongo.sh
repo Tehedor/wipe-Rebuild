@@ -24,12 +24,13 @@ case $RESET_LEVEL in
     kubectl delete -f mongo-deployment.yaml
     ;&
   2)
-    echo "Eliminando el PV asociado al Deployment de MongoDB..."
-    kubectl delete -f mongo-persistent-volume.yaml
-    ;&
-  1)
     echo "Eliminando el PVC asociado al Deployment de MongoDB..."
     kubectl delete -f mongo-persistent-volume-claims.yaml
+    rm -rf "/mnt/mongo"
+    ;&
+  1)
+    echo "Eliminando el PV asociado al Deployment de MongoDB..."
+    kubectl delete -f mongo-persistent-volume.yaml
     ;&
   0)
     echo "Borrando el directorio físico de almacenamiento..."
