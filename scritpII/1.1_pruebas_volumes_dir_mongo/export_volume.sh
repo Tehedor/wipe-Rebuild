@@ -30,7 +30,8 @@ fi
 echo "El pod de MongoDB '$MONGO_POD' está montado en el nodo '$MONGO_NODE'."
 
 # # Definir las rutas
-POD_DIR="/mnt/mongo"
+# scp ~/Documents/export/mongo_volume_backup.tar.gz usuario@servidor_remoto:/ruta/destino/
+POD_DIR="/mongo/mongo_volume_backup.tar.gz"
 NACKED_DIR="~/Documents/export"
 SOURCE_DIR="$NACKED_DIR/$POD_DIR"
 

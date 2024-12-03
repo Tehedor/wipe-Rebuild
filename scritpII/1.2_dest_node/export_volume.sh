@@ -4,17 +4,20 @@
 VOLUME_NAME="mongo-pvc"
 
 # Crear el directorio si no existe
-EXPORT_DIR=~/Documents/export
+EXPORT_DIR=~/Documents/export/mongo
 mkdir -p $EXPORT_DIR
 
 # Definir las rutas
 SOURCE_DIR="/mnt/mongo"
-DEST_DIR=~/Documents/export$SOURCE_DIR
+TAR_FILE="$EXPORT_DIR/mongo_volume_backup.tar.gz"
 
-# Crear el directorio de destino si no existe
-mkdir -p $DEST_DIR
+# Verificar si el directorio de origen existe
+if [ ! -d "$SOURCE_DIR" ]; then
+  echo "El directorio de origen $SOURCE_DIR no existe."
+  exit 1
+fi
 
-# Exportar el VolumeDirectory
-sudo cp -r $SOURCE_DIR $DEST_DIR
+# Crear un archivo tar del directorio de origen
+sudo tar -czvf $TAR_FILE -C $SOURCE_DIR .
 
-echo "Exportación completada. Archivos guardados en: $DEST_DIR"
+echo "Exportación completada. Archivo guardado en: $TAR_FILE"
