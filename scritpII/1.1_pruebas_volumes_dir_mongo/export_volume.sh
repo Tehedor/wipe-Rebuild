@@ -7,8 +7,26 @@ VOLUME_NAME="mongo-pvc"
 EXPORT_DIR=~/Documents/1_snapshotVolumes/export
 mkdir -p $EXPORT_DIR
 
+# Quiero que me saque en que nodo esta montado el pod de mongo
+# Obtener el nombre del pod de MongoDB
+MONGO_POD=$(kubectl get pods --all-namespaces -o jsonpath='{.items[?(@.metadata.labels.app=="mongo")].metadata.name}')
+
+# Verificar si se encontró el pod de MongoDB
+if [ -z "$MONGO_POD" ]; then
+    echo "No se encontró ningún pod de MongoDB."
+    exit 1
+fi
+
+# Obtener el nodo en el que está montado el pod de MongoDB
+MONGO_NODE=$(kubectl get pod $MONGO_POD --all-namespaces -o jsonpath='{.spec.nodeName}')
+
+# Mostrar el nodo en el que está montado el pod de MongoDB
+echo "El pod de MongoDB '$MONGO_POD' está montado en el nodo '$MONGO_NODE'."
+
+
 # Exportar el VolumeDirectory
-scp -r develop@kworker01.lab.local:/mnt/mongo /Docuemnts/1_snapshotVolumes/export
+scp -r develop@$MONGO_NODE:/mnt/mongo /Docuemnts/1_snapshotVolumes/export
+echo "Exportación completada. Archivos guardados en: $EXPORT_DIR"
 
 # # Exportar el PVC
 # kubectl get pvc $VOLUME_NAME -o yaml > $EXPORT_DIR/$VOLUME_NAME.yaml

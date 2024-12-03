@@ -25,3 +25,5 @@ for POD in $PODS; do
     echo "Describiendo pod: $POD"
     kubectl describe pod $POD 
 done
+
+
