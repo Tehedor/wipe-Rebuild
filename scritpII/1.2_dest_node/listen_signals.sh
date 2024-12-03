@@ -11,13 +11,12 @@ SCRIPT_PATH=./export_volume.sh
 handle_signal() {
   echo "Señal recibida. Ejecutando el script..."
   sudo bash $SCRIPT_PATH
+  echo "Script ejecutado correctamente."
 }
 
 # Escuchar en el puerto especificado y manejar la señal
 while true; do
   echo "Esperando señales en el puerto $PORT..."
   # Escuchar en el puerto y leer la entrada
-  nc -l -p $PORT | while read line; do
-    handle_signal
-  done
+  nc -l -p $PORT -c 'handle_signal; echo "Señal procesada";'
 done
