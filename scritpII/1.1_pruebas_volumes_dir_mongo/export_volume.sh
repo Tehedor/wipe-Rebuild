@@ -23,25 +23,20 @@ MONGO_NODE=$(kubectl get pod $MONGO_POD --all-namespaces -o jsonpath='{.spec.nod
 # Mostrar el nodo en el que está montado el pod de MongoDB
 echo "El pod de MongoDB '$MONGO_POD' está montado en el nodo '$MONGO_NODE'."
 
-# Definir las rutas
-SOURCE_DIR="/mnt/mongo"
-DEST_DIR=~/Documents/1_snapshotVolumes/export
+# # Definir las rutas
+# SOURCE_DIR="/mnt/mongo"
+# DEST_DIR=~/Documents/1_snapshotVolumes/export
 
-# Crear el directorio de destino si no existe
-mkdir -p $DEST_DIR
+# # Crear el directorio de destino si no existe
+# mkdir -p $DEST_DIR
 
-# Exportar el VolumeDirectory
-scp -i ~/.ssh/kmaster01 -r develop@$MONGO_NODE:$SOURCE_DIR $DEST_DIR
-
-echo "Exportación completada. Archivos guardados en: $EXPORT_DIR"
-
-# # Exportar el PVC
-# kubectl get pvc $VOLUME_NAME -o yaml > $EXPORT_DIR/$VOLUME_NAME.yaml
-
-# # Exportar el PV asociado al PVC
-# PV_NAME=$(kubectl get pvc $VOLUME_NAME -o jsonpath='{.spec.volumeName}')
-# kubectl get pv $PV_NAME -o yaml > $EXPORT_DIR/$PV_NAME.yaml
+# # Exportar el VolumeDirectory
+# scp -i ~/.ssh/kmaster01 -r develop@$MONGO_NODE:$SOURCE_DIR $DEST_DIR
 
 # echo "Exportación completada. Archivos guardados en: $EXPORT_DIR"
+
+
+
+
 
 # bash ./delete_volumes_mongo.sh 
