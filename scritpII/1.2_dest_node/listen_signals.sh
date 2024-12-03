@@ -11,6 +11,7 @@ SCRIPT_PATH=./export_volume.sh
 handle_signal() {
   echo "Señal recibida. Ejecutando el script..."
   sudo bash $SCRIPT_PATH
+  echo "Script ejecutado correctamente."
 }
 
 # Escuchar en el puerto especificado y manejar la señal
