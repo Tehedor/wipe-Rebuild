@@ -30,7 +30,10 @@ fi
 echo "El pod de MongoDB '$MONGO_POD' está montado en el nodo '$MONGO_NODE'."
 
 # # Definir las rutas
-SOURCE_DIR="/mnt/mongo"
+POD_DIR="/mnt/mongo"
+NACKED_DIR="~/Documents/export/"
+SOURCE_DIR="$NACKED_DIR/$MONGO_POD"
+
 DEST_DIR=~/Documents/1_snapshotVolumes/export
 
 # Crear el directorio de destino si no existe
