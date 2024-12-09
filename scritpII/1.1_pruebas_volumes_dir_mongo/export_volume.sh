@@ -49,4 +49,4 @@ scp -i ~/.ssh/kmaster01 -r develop@$MONGO_NODE:$SOURCE_DIR $DEST_DIR
 
 
 
-# bash ./delete_volumes_mongo.sh 
+# bash ./delete_volumes_mongo.sh 1
