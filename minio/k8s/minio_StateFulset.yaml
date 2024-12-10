@@ -4,6 +4,7 @@ metadata:
   name: minio
 
 ---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -19,6 +20,7 @@ spec:
     path: "/mnt/data/minio-0" # Cambia esta ruta por una válida en tu nodo
 
 ---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -34,6 +36,7 @@ spec:
     path: "/mnt/data/minio-1" # Cambia esta ruta por una válida en tu nodo
 
 ---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -49,48 +52,7 @@ spec:
     path: "/mnt/data/minio-2" # Cambia esta ruta por una válida en tu nodo
 
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: minio-pvc-0
-  namespace: minio
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: local-storage
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: minio-pvc-1
-  namespace: minio
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: local-storage
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: minio-pvc-2
-  namespace: minio
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: local-storage
-
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -141,6 +103,7 @@ spec:
         storageClassName: local-storage
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
