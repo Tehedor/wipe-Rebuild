@@ -27,12 +27,14 @@ spec:
           image: minio/minio:latest
           args:
             - server
-            - http://minio-0.minio-service.default.svc.cluster.local/data
-            - http://minio-1.minio-service.default.svc.cluster.local/data
-            - http://minio-2.minio-service.default.svc.cluster.local/data
+            - http://minio-0.minio-service.minio.svc.cluster.local/data
+            - http://minio-1.minio-service.minio.svc.cluster.local/data
+            - http://minio-2.minio-service.minio.svc.cluster.local/data
           ports:
-            - containerPort: 9000
-            - containerPort: 9001 # Consola de administración
+            - name: http
+              containerPort: 9000
+            - name: console
+              containerPort: 9001 # Consola de administración
           env:
             - name: MINIO_ROOT_USER
               value: "minio"
@@ -41,10 +43,6 @@ spec:
           volumeMounts:
             - name: minio-data
               mountPath: /data
-      volumes:
-        - name: minio-data
-          persistentVolumeClaim:
-            claimName: minio-pvc
   volumeClaimTemplates:
     - metadata:
         name: minio-data
@@ -64,7 +62,9 @@ spec:
   selector:
     app: minio
   ports:
-    - port: 9000
+    - name: http
+      port: 9000
       targetPort: 9000
-    - port: 9001
+    - name: console
+      port: 9001
       targetPort: 9001
