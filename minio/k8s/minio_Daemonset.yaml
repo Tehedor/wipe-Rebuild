@@ -64,7 +64,8 @@ spec:
         app: minio
     spec:
       nodeSelector:
-        role: control-plane # Esto limita los nodos donde se desplegarán los pods
+        role: minio
+        # role: control-plane # Esto limita los nodos donde se desplegarán los pods
       tolerations:
         - key: "node-role.kubernetes.io/control-plane"
           operator: "Exists"
