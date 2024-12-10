@@ -8,6 +8,22 @@ metadata:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  name: minio-pv-0
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  hostPath:
+    path: "/mnt/data/minio-0" # Cambia esta ruta por una válida en tu nodo
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
   name: minio-pv-1
 spec:
   capacity:
@@ -34,22 +50,6 @@ spec:
   storageClassName: local-storage
   hostPath:
     path: "/mnt/data/minio-2" # Cambia esta ruta por una válida en tu nodo
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: minio-pv-3
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage
-  hostPath:
-    path: "/mnt/data/minio-3" # Cambia esta ruta por una válida en tu nodo
 
 ---
 
@@ -93,7 +93,7 @@ spec:
             - name: MINIO_ROOT_USER
               value: "minio"
             - name: MINIO_ROOT_PASSWORD
-              value: "minio"
+              value: "minio123"
           volumeMounts:
             - name: minio-data
               mountPath: /data
