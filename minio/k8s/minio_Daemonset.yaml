@@ -7,7 +7,7 @@ metadata:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: minio-pv-0
+  name: minio-pv-1
 spec:
   capacity:
     storage: 10Gi
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: minio-pv-1
+  name: minio-pv-2
 spec:
   capacity:
     storage: 10Gi
@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: minio-pv-2
+  name: minio-pv-3
 spec:
   capacity:
     storage: 10Gi
