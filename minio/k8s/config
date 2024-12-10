@@ -1,0 +1,4 @@
+
+
+
+kubectl delete statefulset minio -n minio
