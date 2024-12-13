@@ -81,9 +81,17 @@ spec:
           image: minio/minio:latest
           args:
             - server
+            - --console-address
+            - ":9001"
             - http://minio-0.minio-service-0.minio.svc.cluster.local/data
             - http://minio-1.minio-service-1.minio.svc.cluster.local/data
             - http://minio-2.minio-service-2.minio.svc.cluster.local/data
+          # args:
+          #   - minio server /data --console-address :9001
+          #   - server
+          #   - http://minio-0.minio-service-0.minio.svc.cluster.local/data
+          #   - http://minio-1.minio-service-1.minio.svc.cluster.local/data
+          #   - http://minio-2.minio-service-2.minio.svc.cluster.local/data
           ports:
             - name: http
               containerPort: 9000
@@ -108,7 +116,6 @@ spec:
         storageClassName: local-storage
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
