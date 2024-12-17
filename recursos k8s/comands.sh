@@ -7,4 +7,4 @@ kubectl get all,pvc,configmaps,secrets,ingresses,networkpolicies,serviceaccounts
 
 
 # Con get eliginedo compoenentes mas
-kubectl get all,pvc,configmaps,secrets,ingresses,networkpolicies,serviceaccounts,statefulSet,daemonSets,jobs,cronJobs -n default -o wide
+kubectl get all,pvc,configmaps,secrets,ingresses,networkpolicies,serviceaccounts,statefulSet,daemonSets,jobs,cronJobs -n default -o widez
