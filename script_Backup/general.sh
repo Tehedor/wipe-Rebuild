@@ -1,6 +1,9 @@
 #!/bin/bash
 
-source "./components/*"
+# source "./components/*"
+for file in ./components/*.sh; do
+  source "$file"
+done
 
 # 1.- Detectar todos los namespaces exitentes
 
