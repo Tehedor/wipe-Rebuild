@@ -1,15 +1,18 @@
 #!/bin/bash
 
-# source "./components/*"
 for file in ./components/*.sh; do
   source "$file"
 done
 
 # 1.- Detectar todos los namespaces exitentes
+extract_namespace # return: all_namespaces
 
+for ns in "${all_namespaces[@]}"; do
+    echo "Namespace: $ns"
+    
+done
 
 # 2.- Dividir Namespace por servicio
-extract_namespace
 
 
     # 2.1.- Sacaremos de cada servicio todo los resource types que haya   
